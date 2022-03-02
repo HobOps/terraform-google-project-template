@@ -1,6 +1,6 @@
 module "https_loadbalancer" {
   for_each                        = var.https_loadbalancer
-  source                          = "../https_loadbalancer"
+  source                          = "./modules/https_loadbalancer"
   name                            = each.key
   project                         = lookup(each.value, "project", var.project_id)
   firewall_networks               = lookup(each.value, "firewall_networks", [])

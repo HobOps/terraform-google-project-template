@@ -4,7 +4,7 @@ variable "instance_group" {
 }
 
 module "instance_group" {
-  source         = "../instance_group"
+  source         = "./modules/instance_group"
   instance_group = var.instance_group
 }
 
