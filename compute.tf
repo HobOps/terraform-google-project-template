@@ -19,7 +19,7 @@ module "compute_instances" {
   public_ip         = lookup(each.value, "public_ip", false)
   create_dns_record = lookup(each.value, "create_dns_record", false)
   dns_project_id    = lookup(each.value, "dns_project_id", var.project_id)
-  dns_managed_zone  = lookup(each.value, "dns_managed_zone")
+  dns_managed_zone  = lookup(each.value, "dns_managed_zone", "")
 
   # Storage and backups
   instance_disk_size = lookup(each.value, "instance_disk_size", 64)
