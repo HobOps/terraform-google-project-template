@@ -22,6 +22,10 @@ variable "cloud_nat_routers" {
   type = any
 }
 
+variable "serverless_connector" {
+  type = any
+}
+
 variable "compute_instances" {
   type = any
 }
