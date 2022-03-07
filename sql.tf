@@ -51,7 +51,7 @@ module "cloud_sql_mysql" {
 
   user_name        = lookup(each.value, "user_name", "root")
   user_password    = lookup(each.value, "user_password", "")
-  additional_users = nonsensitive(lookup(each.value, "additional_users", []))
+  additional_users = lookup(each.value, "additional_users", [])
 
   deletion_protection = lookup(each.value, "deletion_protection", true)
 
@@ -102,7 +102,7 @@ module "cloud_sql_postgresql" {
 
   user_name        = lookup(each.value, "user_name", "postgres")
   user_password    = lookup(each.value, "user_password", "")
-  additional_users = nonsensitive(lookup(each.value, "additional_users", []))
+  additional_users = lookup(each.value, "additional_users", [])
 
   deletion_protection = lookup(each.value, "deletion_protection", true)
 
