@@ -26,7 +26,7 @@ locals {
 }
 # https://github.com/terraform-google-modules/terraform-google-sql-db
 module "cloud_sql_mysql" {
-  for_each             = var.cloud_sql_mysql
+  for_each             = nonsensitive(var.cloud_sql_mysql)
   depends_on           = [module.vpc, module.private-service-access]
   source               = "GoogleCloudPlatform/sql-db/google//modules/mysql"
   version              = "9.0.0"
@@ -77,7 +77,7 @@ module "cloud_sql_mysql" {
 }
 
 module "cloud_sql_postgresql" {
-  for_each             = var.cloud_sql_postgresql
+  for_each             = nonsensitive(var.cloud_sql_postgresql)
   depends_on           = [module.vpc, module.private-service-access]
   source               = "GoogleCloudPlatform/sql-db/google//modules/postgresql"
   version              = "9.0.0"
