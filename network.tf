@@ -11,7 +11,7 @@ module "vpc" {
   subnets          = lookup(each.value, "subnets", [])
   secondary_ranges = lookup(each.value, "secondary_ranges", {})
   routes           = lookup(each.value, "routes", [])
-  mtu              = lookup(each.value, "mtu", 1460)
+  mtu              = lookup(each.value, "mtu", 0)
 }
 
 # Addresses

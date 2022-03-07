@@ -25,6 +25,7 @@ locals {
   ]
 }
 # https://github.com/terraform-google-modules/terraform-google-sql-db
+# TODO: Resolve issue in https://github.com/HobOps/terraform-google-project-template/issues/1
 module "cloud_sql_mysql" {
   for_each             = var.cloud_sql_mysql
   depends_on           = [module.vpc, module.private-service-access]
@@ -77,11 +78,13 @@ module "cloud_sql_mysql" {
   }
 }
 
+# TODO: Resolve issue in https://github.com/HobOps/terraform-google-project-template/issues/1
 module "cloud_sql_postgresql" {
   for_each             = var.cloud_sql_postgresql
   depends_on           = [module.vpc, module.private-service-access]
-  source               = "GoogleCloudPlatform/sql-db/google//modules/postgresql"
-  version              = "9.0.0"
+  source = "github.com/inetshell/terraform-google-sql-db//modules/postgresql?ref=fix-sensitive-values-isssue"
+//  source               = "GoogleCloudPlatform/sql-db/google//modules/postgresql"
+//  version              = "9.0.0"
   name                 = each.key
   project_id           = var.project_id
   random_instance_name = lookup(each.value, "random_instance_name", true)
