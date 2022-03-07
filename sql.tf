@@ -28,8 +28,9 @@ locals {
 module "cloud_sql_mysql" {
   for_each             = var.cloud_sql_mysql
   depends_on           = [module.vpc, module.private-service-access]
-  source               = "GoogleCloudPlatform/sql-db/google//modules/mysql"
-  version              = "9.0.0"
+  source = "github.com/inetshell/terraform-google-sql-db?ref=hotfix/fix-sensitive-values-isssue"
+//  source               = "GoogleCloudPlatform/sql-db/google//modules/mysql"
+//  version              = "9.0.0"
   name                 = each.key
   project_id           = var.project_id
   random_instance_name = lookup(each.value, "random_instance_name", true)
