@@ -26,7 +26,7 @@ locals {
 }
 # https://github.com/terraform-google-modules/terraform-google-sql-db
 module "cloud_sql_mysql" {
-  for_each             = nonsensitive(var.cloud_sql_mysql)
+  for_each             = var.cloud_sql_mysql
   depends_on           = [module.vpc, module.private-service-access]
   source               = "GoogleCloudPlatform/sql-db/google//modules/mysql"
   version              = "9.0.0"
@@ -50,7 +50,7 @@ module "cloud_sql_mysql" {
 
   user_name        = lookup(each.value, "user_name", "root")
   user_password    = lookup(each.value, "user_password", "")
-  additional_users = lookup(each.value, "additional_users", [])
+  additional_users = nonsensitive(lookup(each.value, "additional_users", []))
 
   deletion_protection = lookup(each.value, "deletion_protection", true)
 
@@ -77,7 +77,7 @@ module "cloud_sql_mysql" {
 }
 
 module "cloud_sql_postgresql" {
-  for_each             = nonsensitive(var.cloud_sql_postgresql)
+  for_each             = var.cloud_sql_postgresql
   depends_on           = [module.vpc, module.private-service-access]
   source               = "GoogleCloudPlatform/sql-db/google//modules/postgresql"
   version              = "9.0.0"
@@ -101,7 +101,7 @@ module "cloud_sql_postgresql" {
 
   user_name        = lookup(each.value, "user_name", "postgres")
   user_password    = lookup(each.value, "user_password", "")
-  additional_users = lookup(each.value, "additional_users", [])
+  additional_users = nonsensitive(lookup(each.value, "additional_users", []))
 
   deletion_protection = lookup(each.value, "deletion_protection", true)
 
