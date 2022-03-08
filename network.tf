@@ -45,17 +45,17 @@ module "private-service-access" {
 
 # VPC Serverless connector
 module "serverless_connector" {
-  for_each = var.serverless_connector
+  for_each   = var.serverless_connector
   source     = "terraform-google-modules/network/google//modules/vpc-serverless-connector-beta"
-  version  = "5.0.0"
+  version    = "5.0.0"
   project_id = var.project_id
   vpc_connectors = [{
-    name            = each.key
-    region          = lookup(each.value, "region", var.region)
-    subnet_name     = lookup(each.value, "subnet_name")
-    machine_type    = lookup(each.value, "machine_type", "e2-micro")
-    min_instances   = lookup(each.value, "min_instances", 2)
-    max_instances   = lookup(each.value, "max_instances", 3)
-    max_throughput  = lookup(each.value, "max_throughput", 300)
+    name           = each.key
+    region         = lookup(each.value, "region", var.region)
+    subnet_name    = lookup(each.value, "subnet_name")
+    machine_type   = lookup(each.value, "machine_type", "e2-micro")
+    min_instances  = lookup(each.value, "min_instances", 2)
+    max_instances  = lookup(each.value, "max_instances", 3)
+    max_throughput = lookup(each.value, "max_throughput", 300)
   }]
 }

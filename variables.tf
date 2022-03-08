@@ -23,7 +23,7 @@ variable "cloud_nat_routers" {
 }
 
 variable "serverless_connector" {
-  type = any
+  type    = any
   default = {}
 }
 
