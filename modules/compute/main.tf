@@ -55,6 +55,8 @@ resource "google_compute_instance" "default" {
 
   tags = var.instance_tags
 
+  can_ip_forward = var.can_ip_forward
+
   service_account {
     //    email = data.google_compute_default_service_account.default.email
     //    email = data.google_compute_default_service_account.default.email

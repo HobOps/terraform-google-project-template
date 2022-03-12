@@ -61,3 +61,8 @@ variable "dns_managed_zone" {
   type    = string
   default = ""
 }
+
+variable "can_ip_forward" {
+  type    = bool
+  default = false
+}
