@@ -9,11 +9,11 @@ resource "google_pubsub_subscription" "default" {
   count = var.create_default_subscription ? 1 : 0
   topic = google_pubsub_topic.default.name
   project  = var.project_id
-  message_retention_duration = "604800s"
-  retain_acked_messages      = false
-  ack_deadline_seconds = 10
+  message_retention_duration = var.message_retention_duration
+  retain_acked_messages      = var.retain_acked_messages
+  ack_deadline_seconds = var.ack_deadline_seconds
+  enable_message_ordering    = var.enable_message_ordering
   expiration_policy {
-    ttl = "2678400s"
+    ttl = var.expiration_policy_ttl
   }
-  enable_message_ordering    = false
 }
