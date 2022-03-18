@@ -50,13 +50,15 @@ module "serverless_connector" {
   version    = "5.0.0"
   project_id = var.project_id
   vpc_connectors = [{
-    name           = each.key
-    region         = lookup(each.value, "region", var.region)
-    network        = lookup(each.value, "network")
-    subnet_name    = lookup(each.value, "subnet_name")
-    machine_type   = lookup(each.value, "machine_type", "e2-micro")
-    min_instances  = lookup(each.value, "min_instances", 2)
-    max_instances  = lookup(each.value, "max_instances", 3)
-    max_throughput = lookup(each.value, "max_throughput", 300)
+    name            = each.key
+    region          = lookup(each.value, "region", var.region)
+    network         = lookup(each.value, "network", null)
+    ip_cidr_range   = lookup(each.value, "ip_cidr_range", null)
+    subnet_name     = lookup(each.value, "subnet_name", null)
+    host_project_id = lookup(each.value, "host_project_id", null)
+    machine_type    = lookup(each.value, "machine_type", "e2-micro")
+    min_instances   = lookup(each.value, "min_instances", 2)
+    max_instances   = lookup(each.value, "max_instances", 3)
+    max_throughput  = lookup(each.value, "max_throughput", 300)
   }]
 }
