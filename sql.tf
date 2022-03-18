@@ -29,9 +29,8 @@ locals {
 module "cloud_sql_mysql" {
   for_each   = var.cloud_sql_mysql
   depends_on = [module.vpc, module.private-service-access]
-//  source     = "github.com/inetshell/terraform-google-sql-db//modules/mysql?ref=fix-sensitive-values-isssue"
   source               = "GoogleCloudPlatform/sql-db/google//modules/mysql"
-  version              = "9.0.0"
+  version              = "10.0.0"
   name                 = each.key
   project_id           = var.project_id
   random_instance_name = lookup(each.value, "random_instance_name", true)
@@ -84,7 +83,7 @@ module "cloud_sql_postgresql" {
   depends_on = [module.vpc, module.private-service-access]
   //  source = "github.com/inetshell/terraform-google-sql-db//modules/postgresql?ref=fix-sensitive-values-isssue"
   source               = "GoogleCloudPlatform/sql-db/google//modules/postgresql"
-  version              = "9.0.0"
+  version              = "10.0.0"
   name                 = each.key
   project_id           = var.project_id
   random_instance_name = lookup(each.value, "random_instance_name", true)
