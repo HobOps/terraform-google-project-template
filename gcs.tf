@@ -4,23 +4,41 @@ variable "gcs_buckets" {
 }
 
 module "gcs_buckets" {
-  for_each           = var.gcs_buckets
-  source             = "terraform-google-modules/cloud-storage/google"
-  version            = "v3.2.0"
-  project_id         = lookup(each.value, "project_id", var.project_id)
-  names              = lookup(each.value, "names", [])
-  prefix             = lookup(each.value, "prefix", "")
-  set_admin_roles    = lookup(each.value, "set_admin_roles", true)
-  admins             = lookup(each.value, "admins", [])
-  versioning         = lookup(each.value, "versioning", {})
-  bucket_policy_only = lookup(each.value, "bucket_policy_only", {})
-  bucket_admins      = lookup(each.value, "bucket_admins", {})
-  bucket_viewers     = lookup(each.value, "bucket_viewers", {})
-  force_destroy      = lookup(each.value, "force_destroy", {})
-  labels             = lookup(each.value, "labels", {})
-  location           = lookup(each.value, "location", "US")
-  logging            = lookup(each.value, "logging", {})
-  randomize_suffix   = lookup(each.value, "randomize_suffix", false)
+  for_each        = var.gcs_buckets
+  source          = "terraform-google-modules/cloud-storage/google"
+  version         = "v3.2.0"
+  project_id      = lookup(each.value, "project_id", var.project_id)
+  names           = [each.key]
+  prefix          = lookup(each.value, "prefix", "")
+  set_admin_roles = lookup(each.value, "set_admin_roles", true)
+  admins          = lookup(each.value, "admins", [])
+  versioning = {
+    "each.key" = lookup(each.value, "versioning", null)
+  }
+  bucket_policy_only = {
+    "each.key" = lookup(each.value, "bucket_policy_only", null)
+  }
+  bucket_admins = {
+    "each.key" = lookup(each.value, "bucket_admins", null)
+  }
+  bucket_viewers = {
+    "each.key" = lookup(each.value, "bucket_viewers", null)
+  }
+  force_destroy = {
+    "each.key" = lookup(each.value, "force_destroy", null)
+  }
+  labels = {
+    "each.key" = lookup(each.value, "labels", null)
+  }
+  location = {
+    "each.key" = lookup(each.value, "location", null)
+  }
+  logging = {
+    "each.key" = lookup(each.value, "logging", null)
+  }
+  randomize_suffix = {
+    "each.key" = lookup(each.value, "randomize_suffix", null)
+  }
 }
 
 output "gcs_buckets" {
