@@ -27,8 +27,8 @@ locals {
 # https://github.com/terraform-google-modules/terraform-google-sql-db
 # TODO: Resolve issue in https://github.com/HobOps/terraform-google-project-template/issues/1
 module "cloud_sql_mysql" {
-  for_each   = var.cloud_sql_mysql
-  depends_on = [module.vpc, module.private-service-access]
+  for_each             = var.cloud_sql_mysql
+  depends_on           = [module.vpc, module.private-service-access]
   source               = "GoogleCloudPlatform/sql-db/google//modules/mysql"
   version              = "10.0.0"
   name                 = each.key
