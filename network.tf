@@ -52,6 +52,7 @@ module "serverless_connector" {
   vpc_connectors = [{
     name           = each.key
     region         = lookup(each.value, "region", var.region)
+    network        = lookup(each.value, "network")
     subnet_name    = lookup(each.value, "subnet_name")
     machine_type   = lookup(each.value, "machine_type", "e2-micro")
     min_instances  = lookup(each.value, "min_instances", 2)
