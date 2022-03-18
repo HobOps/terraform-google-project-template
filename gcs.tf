@@ -36,9 +36,7 @@ module "gcs_buckets" {
   logging = {
     "each.key" = lookup(each.value, "logging", null)
   }
-  randomize_suffix = {
-    "each.key" = lookup(each.value, "randomize_suffix", null)
-  }
+  randomize_suffix = lookup(each.value, "randomize_suffix", false)
 }
 
 output "gcs_buckets" {
