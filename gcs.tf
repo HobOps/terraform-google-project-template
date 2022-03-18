@@ -11,6 +11,7 @@ module "gcs_buckets" {
   names           = [each.key]
   prefix          = lookup(each.value, "prefix", "")
   set_admin_roles = lookup(each.value, "set_admin_roles", true)
+  storage_class   = lookup(each.value, "storage_class", "STANDARD")
   admins          = lookup(each.value, "admins", [])
   versioning = {
     "each.key" = lookup(each.value, "versioning", null)
