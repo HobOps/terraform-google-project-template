@@ -1,5 +1,6 @@
 variable "service_accounts" {
   type = any
+  default = {}
 }
 
 module "service_accounts" {
