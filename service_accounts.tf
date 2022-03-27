@@ -1,5 +1,5 @@
 variable "service_accounts" {
-  type = any
+  type    = any
   default = {}
 }
 
