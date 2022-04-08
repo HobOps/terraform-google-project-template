@@ -1,7 +1,8 @@
 # Compute instances
 module "compute_instances" {
-  for_each = var.compute_instances
-  source   = "./modules/compute/"
+  for_each   = var.compute_instances
+  depends_on = [module.service_accounts]
+  source     = "./modules/compute/"
 
   # Instance properties
   project        = var.project_id
