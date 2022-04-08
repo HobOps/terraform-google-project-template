@@ -101,6 +101,7 @@ locals {
 # Firewall
 module "default_firewall_rules" {
   for_each     = var.vpc
+  depends_on   = [module.vpc, module.service_accounts]
   source       = "terraform-google-modules/network/google//modules/firewall-rules"
   version      = "5.0.0"
   project_id   = var.project_id
@@ -110,6 +111,7 @@ module "default_firewall_rules" {
 
 module "firewall_rules" {
   for_each     = var.vpc
+  depends_on   = [module.vpc, module.service_accounts]
   source       = "terraform-google-modules/network/google//modules/firewall-rules"
   version      = "5.0.0"
   project_id   = var.project_id
