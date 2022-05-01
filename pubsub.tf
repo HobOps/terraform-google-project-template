@@ -4,10 +4,12 @@ variable "pubsub_topics" {
 }
 
 module "pubsub_topics" {
-  for_each                    = var.pubsub_topics
-  source                      = "./modules/pubsub_topics/"
-  project_id                  = var.project_id
-  topic                       = each.key
+  for_each   = var.pubsub_topics
+  depends_on = [module.service_accounts]
+  source     = "./modules/pubsub_topics/"
+  project_id = var.project_id
+  topic      = each.key
+
   create_default_subscription = lookup(each.value, "create_default_subscription", true)
 }
 

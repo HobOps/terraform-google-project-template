@@ -7,17 +7,23 @@ module "vpc" {
 
   project_id       = var.project_id
   network_name     = each.key
+  description      = lookup(each.value, "description", "")
   routing_mode     = lookup(each.value, "routing_mode", "GLOBAL")
   subnets          = lookup(each.value, "subnets", [])
   secondary_ranges = lookup(each.value, "secondary_ranges", {})
   routes           = lookup(each.value, "routes", [])
   mtu              = lookup(each.value, "mtu", 0)
+  shared_vpc_host  = lookup(each.value, "shared_vpc_host", false)
+
+  auto_create_subnetworks                = lookup(each.value, "auto_create_subnetworks", false)
+  delete_default_internet_gateway_routes = lookup(each.value, "delete_default_internet_gateway_routes", false)
 }
 
 # Addresses
 # https://github.com/terraform-google-modules/terraform-google-address
 module "addresses" {
   for_each     = var.addresses
+  depends_on   = [module.vpc]
   source       = "terraform-google-modules/address/google"
   version      = "3.1.1"
   names        = [each.key]

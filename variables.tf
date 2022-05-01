@@ -27,10 +27,6 @@ variable "serverless_connector" {
   default = {}
 }
 
-variable "compute_instances" {
-  type = any
-}
-
 variable "vpc_peering" {
   type    = any
   default = {}

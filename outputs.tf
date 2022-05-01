@@ -10,10 +10,6 @@ output "cloud_router" {
   value = module.cloud_router
 }
 
-output "compute_instances" {
-  value = module.compute_instances
-}
-
 output "gcr" {
   value     = module.gcr
   sensitive = true

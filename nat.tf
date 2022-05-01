@@ -2,7 +2,7 @@
 # https://github.com/terraform-google-modules/terraform-google-cloud-router
 module "cloud_router" {
   for_each   = var.cloud_nat_routers
-  depends_on = [module.addresses]
+  depends_on = [module.vpc, module.addresses]
   source     = "terraform-google-modules/cloud-router/google"
   version    = "1.3.0"
   project    = var.project_id

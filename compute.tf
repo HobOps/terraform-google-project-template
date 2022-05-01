@@ -1,7 +1,12 @@
+variable "compute_instances" {
+  type    = any
+  default = {}
+}
+
 # Compute instances
 module "compute_instances" {
   for_each   = var.compute_instances
-  depends_on = [module.service_accounts]
+  depends_on = [module.vpc, module.service_accounts]
   source     = "./modules/compute/"
 
   # Instance properties
@@ -27,4 +32,8 @@ module "compute_instances" {
   instance_disk_size = lookup(each.value, "instance_disk_size", 64)
   instance_disk_type = lookup(each.value, "instance_disk_type", "pd-ssd")
   max_retention_days = lookup(each.value, "max_retention_days", 15)
+}
+
+output "compute_instances" {
+  value = module.compute_instances
 }
