@@ -1,5 +1,5 @@
 # Google Artifact Registry
-module "gcr" {
+module "gar" {
   for_each   = var.enable_gar == true ? toset(["main"]) : []
   depends_on = [module.service_accounts]
   source     = "./modules/gar/"
