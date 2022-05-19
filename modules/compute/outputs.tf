@@ -11,5 +11,5 @@ output "public_ip" {
 }
 
 output "dns_record" {
-  value = var.public_ip == true ? trimsuffix("${var.instance_name}.${data.google_dns_managed_zone.infra.0.dns_name}", ".") : ""
+  value = var.create_dns_record == true ? trimsuffix("${var.instance_name}.${data.google_dns_managed_zone.infra.0.dns_name}", ".") : ""
 }
