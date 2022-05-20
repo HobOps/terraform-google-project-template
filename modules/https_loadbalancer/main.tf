@@ -70,11 +70,10 @@ locals {
   address      = var.create_address ? join("", google_compute_global_address.default.*.address) : var.address
   ipv6_address = var.create_ipv6_address ? join("", google_compute_global_address.default_ipv6.*.address) : var.ipv6_address
 
-  url_map             = var.create_url_map ? join("", google_compute_url_map.default.*.self_link) : var.url_map
+//  url_map             = var.create_url_map ? join("", google_compute_url_map.default.*.self_link) : var.url_map #REMOVE
   create_http_forward = var.http_forward || var.https_redirect
 
   health_checked_backends = { for backend_index, backend_value in local.backends : backend_index => backend_value if backend_value["health_check"] != null }
-
 }
 
 ### IPv4 block ###
@@ -136,7 +135,8 @@ resource "google_compute_target_http_proxy" "default" {
   project = var.project
   count   = local.create_http_forward ? 1 : 0
   name    = "${var.name}-http-proxy"
-  url_map = var.https_redirect == false ? local.url_map : join("", google_compute_url_map.https_redirect.*.self_link)
+  url_map = var.https_redirect == false ? var.url_map : join("", google_compute_url_map.https_redirect.*.self_link)
+//  url_map = var.https_redirect == false ? local.url_map : join("", google_compute_url_map.https_redirect.*.self_link) #REMOVE
 }
 
 # HTTPS proxy when ssl is true
@@ -144,7 +144,8 @@ resource "google_compute_target_https_proxy" "default" {
   project = var.project
   count   = var.ssl ? 1 : 0
   name    = "${var.name}-https-proxy"
-  url_map = local.url_map
+  url_map = var.url_map
+//  url_map = local.url_map #REMOVE
 
   ssl_certificates = compact(concat(var.ssl_certificates, google_compute_ssl_certificate.default.*.self_link, google_compute_managed_ssl_certificate.default.*.self_link, ), )
   ssl_policy       = var.ssl_policy
