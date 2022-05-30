@@ -10,7 +10,7 @@ variable "managed_certificates" {
 
 variable "url_map" {
   type    = any
-  default = {}
+  default = ""
 }
 
 module "https_loadbalancer" {
@@ -28,7 +28,7 @@ module "https_loadbalancer" {
   create_address                  = lookup(each.value, "create_address", false)
   address                         = lookup(each.value, "address", "")
   backends                        = lookup(each.value, "backends", {})
-  url_map                         = lookup(each.value, "url_map", {})
+  url_map                         = lookup(each.value, "url_map", "")
 }
 
 output "https_loadbalancer" {
