@@ -12,14 +12,17 @@ variable "zone" {
 
 variable "vpc" {
   type = any
+  default = {}
 }
 
 variable "addresses" {
   type = any
+  default = {}
 }
 
 variable "cloud_nat_routers" {
   type = any
+  default = {}
 }
 
 variable "serverless_connector" {
@@ -53,21 +56,6 @@ variable "enable_gcr" {
 }
 
 variable "healthcare_fhir_stores" {
-  type    = any
-  default = {}
-}
-
-variable "https_loadbalancer" {
-  type    = any
-  default = {}
-}
-
-variable "managed_certificates" {
-  type    = any
-  default = {}
-}
-
-variable "url_map" {
   type    = any
   default = {}
 }

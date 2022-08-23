@@ -1,3 +1,18 @@
+variable "https_loadbalancer" {
+  type    = any
+  default = {}
+}
+
+variable "managed_certificates" {
+  type    = any
+  default = {}
+}
+
+variable "url_map" {
+  type    = any
+  default = {}
+}
+
 module "https_loadbalancer" {
   for_each                        = var.https_loadbalancer
   source                          = "./modules/https_loadbalancer"
@@ -13,5 +28,9 @@ module "https_loadbalancer" {
   create_address                  = lookup(each.value, "create_address", false)
   address                         = lookup(each.value, "address", "")
   backends                        = lookup(each.value, "backends", {})
-  //  url_map                         = lookup(each.value, "url_map", {})
+  url_map                         = lookup(each.value, "url_map", {})
+}
+
+output "https_loadbalancer" {
+  value = module.https_loadbalancer
 }

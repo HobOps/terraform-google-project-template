@@ -9,3 +9,7 @@ output "private_ip" {
 output "public_ip" {
   value = var.public_ip == true ? google_compute_address.default[0].address : ""
 }
+
+output "dns_record" {
+  value = var.create_dns_record == true ? trimsuffix("${var.instance_name}.${data.google_dns_managed_zone.infra.0.dns_name}", ".") : ""
+}
