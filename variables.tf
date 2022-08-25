@@ -55,6 +55,14 @@ variable "enable_gcr" {
   default = false
 }
 
+variable "gar" {
+  type    = any
+  default = {
+    enabled = false
+    description = ""
+  }
+}
+
 variable "healthcare_fhir_stores" {
   type    = any
   default = {}
