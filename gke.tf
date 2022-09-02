@@ -7,7 +7,7 @@ module "gke" {
   for_each   = var.gke
   depends_on = [module.vpc, module.service_accounts]
   source     = "terraform-google-modules/kubernetes-engine/google//modules/private-cluster"
-  version    = "19.0.0"
+  version    = "23.0.0"
 
   project_id                      = var.project_id
   name                            = each.key
