@@ -33,6 +33,8 @@ module "addresses" {
   ip_version   = lookup(each.value, "ip_version", "IPV4")
   global       = lookup(each.value, "global", false)
   network_tier = lookup(each.value, "network_tier", "PREMIUM")
+  addresses    = lookup(each.value, "addresses", null)
+  subnetwork   = lookup(each.value, "subnetwork", null)
 }
 
 # Private access
