@@ -35,6 +35,6 @@ module "compute_instances" {
 }
 
 output "compute_instances" {
-  value = module.compute_instances
+  value     = module.compute_instances
   sensitive = true
 }

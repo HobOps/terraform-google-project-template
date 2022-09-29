@@ -11,17 +11,17 @@ variable "zone" {
 }
 
 variable "vpc" {
-  type = any
+  type    = any
   default = {}
 }
 
 variable "addresses" {
-  type = any
+  type    = any
   default = {}
 }
 
 variable "cloud_nat_routers" {
-  type = any
+  type    = any
   default = {}
 }
 
@@ -56,9 +56,9 @@ variable "enable_gcr" {
 }
 
 variable "gar" {
-  type    = any
+  type = any
   default = {
-    enabled = false
+    enabled     = false
     description = ""
   }
 }

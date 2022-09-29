@@ -23,6 +23,28 @@ locals {
       value = "10000"
     }
   ]
+  # Disable read replicas
+  #  postgresql_read_replicas = {
+  #    for key, value in var.postgresql_read_replicas : key => {
+  #      name                = lookup(each.value.read_replica, "name")
+  #      zone                = lookup(each.value.read_replica, "zone", var.zone)
+  #      tier                = lookup(each.value.read_replica, "tier", "db-custom-1-3840")
+  #      disk_type           = lookup(each.value.read_replica, "disk_type", "PD_SSD")
+  #      disk_size           = lookup(each.value.read_replica, "disk_size", 30)
+  #      database_flags      = lookup(each.value.read_replica, "database_flags", [])
+  #      disk_autoresize     = lookup(each.value.read_replica, "disk_autoresize", true)
+  #      user_labels         = lookup(each.value.read_replica, "user_labels", {})
+  #      encryption_key_name = lookup(each.value.read_replica, "encryption_key_name", null)
+  #
+  #      ip_configuration = {
+  #        allocated_ip_range  = lookup(each.value.read_replica, "allocated_ip_range", null)
+  #        authorized_networks = lookup(each.value.read_replica, "authorized_networks", [])
+  #        ipv4_enabled        = lookup(each.value.read_replica, "ipv4_enabled", true)
+  #        require_ssl         = lookup(each.value.read_replica, "require_ssl", null)
+  #        private_network     = lookup(each.value.read_replica, "private_network", null)
+  #      }
+  #    }
+  #  }
 }
 # https://github.com/terraform-google-modules/terraform-google-sql-db
 # TODO: Resolve issue in https://github.com/HobOps/terraform-google-project-template/issues/1
@@ -134,27 +156,27 @@ module "cloud_sql_postgresql" {
     retention_unit                 = lookup(each.value, "retention_unit", "COUNT")
     location                       = lookup(each.value, "location", var.region)
   }
-
-  read_replicas = [
-    {
-      name                = lookup(each.value.read_replica, "name")
-      zone                = lookup(each.value.read_replica, "zone", var.zone)
-      tier                = lookup(each.value.read_replica, "tier", "db-custom-1-3840")
-      disk_type           = lookup(each.value.read_replica, "disk_type", "PD_SSD")
-      disk_size           = lookup(each.value.read_replica, "disk_size", 30)
-      database_flags      = lookup(each.value.read_replica, "database_flags", [])
-      disk_autoresize     = lookup(each.value.read_replica, "disk_autoresize", true)
-      user_labels         = lookup(each.value.read_replica, "user_labels", {})
-      encryption_key_name = lookup(each.value.read_replica, "encryption_key_name", null)
-
-      ip_configuration = {
-        allocated_ip_range  = lookup(each.value.read_replica, "allocated_ip_range", null)
-        authorized_networks = lookup(each.value.read_replica, "authorized_networks", [])
-        ipv4_enabled        = lookup(each.value.read_replica, "ipv4_enabled", true)
-        require_ssl         = lookup(each.value.read_replica, "require_ssl", null)
-        private_network     = lookup(each.value.read_replica, "private_network", null)
-      }
-    }
-  ]
+  # Disable read replicas
+  #  read_replicas = [
+  #    {
+  #      name                = lookup(each.value.read_replica, "name")
+  #      zone                = lookup(each.value.read_replica, "zone", var.zone)
+  #      tier                = lookup(each.value.read_replica, "tier", "db-custom-1-3840")
+  #      disk_type           = lookup(each.value.read_replica, "disk_type", "PD_SSD")
+  #      disk_size           = lookup(each.value.read_replica, "disk_size", 30)
+  #      database_flags      = lookup(each.value.read_replica, "database_flags", [])
+  #      disk_autoresize     = lookup(each.value.read_replica, "disk_autoresize", true)
+  #      user_labels         = lookup(each.value.read_replica, "user_labels", {})
+  #      encryption_key_name = lookup(each.value.read_replica, "encryption_key_name", null)
+  #
+  #      ip_configuration = {
+  #        allocated_ip_range  = lookup(each.value.read_replica, "allocated_ip_range", null)
+  #        authorized_networks = lookup(each.value.read_replica, "authorized_networks", [])
+  #        ipv4_enabled        = lookup(each.value.read_replica, "ipv4_enabled", true)
+  #        require_ssl         = lookup(each.value.read_replica, "require_ssl", null)
+  #        private_network     = lookup(each.value.read_replica, "private_network", null)
+  #      }
+  #    }
+  #  ]
 }
 
