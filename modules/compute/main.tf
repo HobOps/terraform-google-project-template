@@ -35,6 +35,7 @@ resource "google_compute_instance" "default" {
 
   network_interface {
     subnetwork = var.subnetwork
+    network_ip = var.network_ip
     dynamic "access_config" {
       for_each = var.public_ip == true ? {
         access_config = {

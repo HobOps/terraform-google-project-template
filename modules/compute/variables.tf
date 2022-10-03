@@ -16,6 +16,10 @@ variable "instance_tags" {
 
 variable "subnetwork" {}
 
+variable "network_ip" {
+  default = ""
+}
+
 variable "instance_disk_size" {
   default = "32"
 }

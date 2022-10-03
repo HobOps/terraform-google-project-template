@@ -21,6 +21,7 @@ module "compute_instances" {
 
   # Network
   subnetwork        = lookup(each.value, "subnetwork")
+  network_ip        = lookup(each.value, "network_ip", "")
   instance_tags     = lookup(each.value, "instance_tags", [])
   public_ip         = lookup(each.value, "public_ip", false)
   create_dns_record = lookup(each.value, "create_dns_record", false)
