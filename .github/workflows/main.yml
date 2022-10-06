@@ -22,3 +22,4 @@ jobs:
         RELEASE_BRANCHES: main
         PRERELEASE: true
         VERBOSE: true
+        DEFAULT_BUMP: patch
