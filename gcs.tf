@@ -7,7 +7,7 @@ module "gcs_buckets" {
   for_each        = var.gcs_buckets
   depends_on      = [module.service_accounts]
   source          = "terraform-google-modules/cloud-storage/google"
-  version         = "v3.2.0"
+  version         = "v3.4.0"
   project_id      = lookup(each.value, "project_id", var.project_id)
   names           = [each.key]
   prefix          = lookup(each.value, "prefix", "")
