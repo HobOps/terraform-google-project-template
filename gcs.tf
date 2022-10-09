@@ -18,22 +18,22 @@ module "gcs_buckets" {
     "each.key" = lookup(each.value, "versioning", false)
   }
   bucket_policy_only = {
-    "each.key" = lookup(each.value, "bucket_policy_only", null)
+    "${each.key}" = lookup(each.value, "bucket_policy_only", null)
   }
   bucket_admins = {
-    "each.key" = lookup(each.value, "bucket_admins", null)
+    "${each.key}" = lookup(each.value, "bucket_admins", null)
   }
   bucket_viewers = {
-    "each.key" = lookup(each.value, "bucket_viewers", null)
+    "${each.key}" = lookup(each.value, "bucket_viewers", null)
   }
   force_destroy = {
-    "each.key" = lookup(each.value, "force_destroy", null)
+    "${each.key}" = lookup(each.value, "force_destroy", null)
   }
   labels = {
-    "each.key" = lookup(each.value, "labels", null)
+    "${each.key}" = lookup(each.value, "labels", null)
   }
   logging = {
-    "each.key" = lookup(each.value, "logging", null)
+    "${each.key}" = lookup(each.value, "logging", null)
   }
   location         = lookup(each.value, "location", "US")
   randomize_suffix = lookup(each.value, "randomize_suffix", false)
