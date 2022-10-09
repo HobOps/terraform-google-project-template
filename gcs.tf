@@ -15,7 +15,7 @@ module "gcs_buckets" {
   storage_class   = lookup(each.value, "storage_class", "STANDARD")
   admins          = lookup(each.value, "admins", [])
   versioning = {
-    "each.key" = lookup(each.value, "versioning", null)
+    "each.key" = lookup(each.value, "versioning", false)
   }
   bucket_policy_only = {
     "each.key" = lookup(each.value, "bucket_policy_only", null)
