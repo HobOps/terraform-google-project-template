@@ -34,6 +34,9 @@ module "gcs_buckets" {
   logging = {
     "${each.key}" = lookup(each.value, "logging", {})
   }
+  lifecycle_rules = {
+    "${each.key}" = lookup(each.value, "lifecycle_rules", [])
+  }
   bucket_lifecycle_rules = {
     "${each.key}" = lookup(each.value, "bucket_lifecycle_rules", [])
   }
