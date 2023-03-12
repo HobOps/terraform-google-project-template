@@ -7,31 +7,31 @@ variable "project_id" {
 }
 
 variable "create_default_subscription" {
-  type = bool
+  type    = bool
   default = true
 }
 
 variable "message_retention_duration" {
-  type = string
+  type    = string
   default = "604800s"
 }
 
 variable "retain_acked_messages" {
-  type = bool
+  type    = bool
   default = false
 }
 
 variable "ack_deadline_seconds" {
-  type = number
+  type    = number
   default = 10
 }
 
 variable "enable_message_ordering" {
-  type = bool
+  type    = bool
   default = false
 }
 
 variable "expiration_policy_ttl" {
-  type = string
+  type    = string
   default = "2678400s"
 }
