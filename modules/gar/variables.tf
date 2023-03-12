@@ -3,7 +3,7 @@ variable "project_id" {
 }
 
 variable "location" {
-  type    = string
+  type = string
 }
 
 variable "repository_id" {
@@ -11,11 +11,11 @@ variable "repository_id" {
 }
 
 variable "description" {
-  type = string
+  type    = string
   default = ""
 }
 
 variable "format" {
-  type = string
+  type    = string
   default = "DOCKER"
 }

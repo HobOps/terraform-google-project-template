@@ -13,13 +13,13 @@ resource "google_project_service" "artifactregistry" {
 
 # Create GAR registry
 resource "google_artifact_registry_repository" "gar" {
-  provider = google-beta
+  provider   = google-beta
   depends_on = [google_project_service.artifactregistry]
 
-  location = var.location
+  location      = var.location
   repository_id = var.repository_id
-  description = var.description
-  format = var.format
+  description   = var.description
+  format        = var.format
 }
 
 # writer
@@ -38,10 +38,10 @@ resource "google_service_account_key" "gar_push_user_key" {
 resource "google_artifact_registry_repository_iam_member" "gar_push" {
   provider = google-beta
 
-  location = google_artifact_registry_repository.gar.location
+  location   = google_artifact_registry_repository.gar.location
   repository = google_artifact_registry_repository.gar.name
-  role   = "roles/artifactregistry.writer"
-  member = "serviceAccount:${google_service_account.gar_push_user.email}"
+  role       = "roles/artifactregistry.writer"
+  member     = "serviceAccount:${google_service_account.gar_push_user.email}"
 }
 
 
@@ -59,8 +59,8 @@ resource "google_service_account_key" "gar_pull_user_key" {
 resource "google_artifact_registry_repository_iam_member" "gar_pull" {
   provider = google-beta
 
-  location = google_artifact_registry_repository.gar.location
+  location   = google_artifact_registry_repository.gar.location
   repository = google_artifact_registry_repository.gar.name
-  role   = "roles/artifactregistry.reader"
-  member = "serviceAccount:${google_service_account.gar_pull_user.email}"
+  role       = "roles/artifactregistry.reader"
+  member     = "serviceAccount:${google_service_account.gar_pull_user.email}"
 }
