@@ -3,10 +3,11 @@ variable "https_loadbalancer" {
   default = {}
 }
 
-variable "managed_certificates" {
-  type    = any
-  default = {}
-}
+## TODO: Add support managed certificates
+#variable "managed_certificates" {
+#  type    = any
+#  default = {}
+#}
 
 variable "url_map" {
   type    = any
