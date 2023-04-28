@@ -1,7 +1,7 @@
 locals {
   default_firewall_rules = [
     {
-      name                    = "allow-ssh"
+      name                    = "${var.vpc}-allow-ssh"
       description             = "Allow SSH"
       direction               = "INGRESS"
       priority                = 1000
@@ -20,7 +20,7 @@ locals {
       }
     },
     {
-      name                    = "allow-kubernetes-ports"
+      name                    = "${var.vpc}-allow-kubernetes-ports"
       description             = "Allow Kubernetes ports"
       direction               = "INGRESS"
       priority                = 1000
@@ -39,7 +39,7 @@ locals {
       }
     },
     {
-      name                    = "allow-nginx-ingress"
+      name                    = "${var.vpc}-allow-nginx-ingress"
       description             = "Allow NGINX ingress"
       direction               = "INGRESS"
       priority                = 1000
@@ -58,7 +58,7 @@ locals {
       }
     },
     {
-      name                    = "allow-webserver"
+      name                    = "${var.vpc}-allow-webserver"
       description             = "Allow webserver"
       direction               = "INGRESS"
       priority                = 1000
@@ -77,7 +77,7 @@ locals {
       }
     },
     {
-      name                    = "allow-ping"
+      name                    = "${var.vpc}-allow-ping"
       description             = "Allow ping"
       direction               = "INGRESS"
       priority                = 1000
