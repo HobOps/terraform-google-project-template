@@ -1,7 +1,7 @@
 locals {
   default_firewall_rules = [
     {
-      name                    = "${var.vpc}-allow-ssh"
+      name                    = "allow-ssh"
       description             = "Allow SSH"
       direction               = "INGRESS"
       priority                = 1000
@@ -20,7 +20,7 @@ locals {
       }
     },
     {
-      name                    = "${var.vpc}-allow-kubernetes-ports"
+      name                    = "allow-kubernetes-ports"
       description             = "Allow Kubernetes ports"
       direction               = "INGRESS"
       priority                = 1000
@@ -39,7 +39,7 @@ locals {
       }
     },
     {
-      name                    = "${var.vpc}-allow-nginx-ingress"
+      name                    = "allow-nginx-ingress"
       description             = "Allow NGINX ingress"
       direction               = "INGRESS"
       priority                = 1000
@@ -58,7 +58,7 @@ locals {
       }
     },
     {
-      name                    = "${var.vpc}-allow-webserver"
+      name                    = "allow-webserver"
       description             = "Allow webserver"
       direction               = "INGRESS"
       priority                = 1000
@@ -77,7 +77,7 @@ locals {
       }
     },
     {
-      name                    = "${var.vpc}-allow-ping"
+      name                    = "allow-ping"
       description             = "Allow ping"
       direction               = "INGRESS"
       priority                = 1000
@@ -100,7 +100,7 @@ locals {
 
 # Firewall
 module "default_firewall_rules" {
-  for_each     = var.vpc
+  for_each     = var.create_default_firewall_rules ? var.vpc : {}
   depends_on   = [module.vpc, module.service_accounts]
   source       = "terraform-google-modules/network/google//modules/firewall-rules"
   version      = "5.0.0"

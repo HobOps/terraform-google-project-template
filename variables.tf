@@ -15,6 +15,11 @@ variable "vpc" {
   default = {}
 }
 
+variable "create_default_firewall_rules" {
+  type    = bool
+  default = true
+}
+
 variable "addresses" {
   type    = any
   default = {}
