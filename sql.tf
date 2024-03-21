@@ -74,6 +74,7 @@ module "cloud_sql_mysql" {
   user_name        = lookup(each.value, "user_name", "root")
   user_password    = lookup(each.value, "user_password", "")
   additional_users = lookup(each.value, "additional_users", [])
+  additional_databases = lookup(each.value, "additional_databases", [])
 
   deletion_protection = lookup(each.value, "deletion_protection", true)
 
