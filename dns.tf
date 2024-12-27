@@ -9,7 +9,7 @@ module "dns" {
   version    = "5.2.0"
   project_id = var.project_id
   type       = each.value["type"]
-  name       = replace(each.key, ".", "-")
+  name       = lookup(each.value, "name", replace(each.key, ".", "-"))
   domain     = "${each.key}."
   labels     = each.value["labels"]
 
